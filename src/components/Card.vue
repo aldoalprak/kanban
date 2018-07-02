@@ -58,7 +58,7 @@
                       <span class="col s10">
                         {{done.name}}
                       </span>
-                      <button class="btn-floating btn-small waves-effect waves-light green" @click="completeTask(index)"><i class="material-icons">done</i></button>
+                      <button class="btn-floating btn-small waves-effect waves-light green" @click="deleteTask(index)"><i class="material-icons">done</i></button>
                     </div>
                     <hr>
                   </li>
@@ -75,7 +75,7 @@
           <label for="taskName">TaskName</label>
         </div>
         <div class="modal-footer">
-          <button class="modal-close waves-effect waves-green btn" @click="deleteTask()">Add</button>
+          <button class="modal-close waves-effect waves-green btn" @click="addTask()">Add</button>
         </div>
       </div>
 
@@ -101,12 +101,15 @@ export default {
       var instances = M.Modal.init(elems);
     },
     addTask() {
+      console.log("masuk addtask");
+      const self = this
       let task = {
         name: this.taskName
       }
       todo.push(task)
       .then(snapshot=>{
         console.log("push===",snapshot);
+        self.taskName=""
       })
     },
     doTask(index) {
